@@ -5,9 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstrack
+namespace DataAccess.Abstract
 {
-    public interface ICustomerDal:IEntityRepository<Customer>
+    public interface ICategoryDal:IEntityRepository<Category>
     {
+
     }
 }

@@ -1,5 +1,5 @@
-﻿using Business.Abstrack;
-using DataAccess.Abstrack;
+﻿using Business.Abstract;
+using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
