@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace Entities.DTOs
 {
     //  IEntity sen bir veri tablosu tablosusun.
-
     public class ProductDetailDto : IDto
     {
         public int ProductId { get; set; }

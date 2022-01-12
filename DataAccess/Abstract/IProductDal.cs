@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    // I interface Product  Dal hangi katmana karşılık geldiğini Dal data Acces Layer  Dau
+    // I interface Product  Dal hangi katmana karşılık geldiğini Dal Data Acces Layer  veya Dau kullanılır.
     public interface IProductDal:IEntityRepository<Product>
     {
        
