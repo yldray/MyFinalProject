@@ -40,10 +40,10 @@ namespace Business.Concrete
         {
             //İş kodları var burada mesela yetkisi varmı gibi bakıyor
             // saat 10 da ürün vermemek için
-            if (DateTime.Now.Hour==22)
-            {
-                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
-            }
+            //if (DateTime.Now.Hour == 12)
+            //{
+            //    return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
+            //}
 
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductListed);
         }
