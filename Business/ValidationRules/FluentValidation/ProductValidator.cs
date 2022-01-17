@@ -10,7 +10,8 @@ namespace Business.ValidationRules.FluentValidation
 {
     public class ProductValidator : AbstractValidator<Product>
     {
-        public ProductValidator()
+        public ProductValidator()//Sadece yapısı ile ilgilenebilir buraya 10 dan fazla ürün eklenemez kuralı yazılmaz.
+
         {
             RuleFor(p => p.ProductName).NotEmpty();
             RuleFor(p => p.ProductName).MinimumLength(2);
