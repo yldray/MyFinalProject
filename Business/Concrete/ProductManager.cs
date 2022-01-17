@@ -1,10 +1,14 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspect.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,19 +24,31 @@ namespace Business.Concrete
         {
             _productDal = productDal;
         }
-
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             //business codes.
-            if (product.ProductName.Length<2)
-            {
-                //magic string 
-                // her yerde yazarız bir yerde değiştirmeyi unuturuz bu yüzden bunu tek bir yerde 
-                //standart şekilde yazıyoruz.
-                return new ErrorResult(Messages.ProductNameInvalid);
-            }
-           _productDal.Add(product);
-            
+            //validation
+            ///// ARTIK VALIDATION KULLANIYORUZ
+            ////if (product.ProductName.Length<2) 
+            ////{
+            ////    //magic string 
+            ////    // her yerde yazarız bir yerde değiştirmeyi unuturuz bu yüzden bunu tek bir yerde 
+            ////    //standart şekilde yazıyoruz.
+            ////    return new ErrorResult(Messages.ProductNameInvalid);
+            ////}
+            ///
+            ////////// Refactoring yapıyoruz
+            //////////var context = new ValidationContext<Product>(product);
+            //////////ProductValidator productValidator = new ProductValidator();
+            //////////var result = productValidator.Validate(context);
+            //////////if (!result.IsValid)
+            //////////{
+            //////////    throw new ValidationException(result.Errors);
+            //////////}
+
+            ////ValidationTool.Validate(new ProductValidator(), product); attributes kullanarak buna da gerek kalmadı.
+            _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
         }
 
