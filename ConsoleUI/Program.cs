@@ -17,39 +17,39 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             //Data Transformation Object
-             ProductTest();
+             //ProductTest();
             //IoC
             //CategoryTest();
 
         }
 
-        private static void CategoryTest()
-        {
-            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-            foreach (var categor in categoryManager.GetAll())
-            {
-                Console.WriteLine(categor.CategoryName);
+        //private static void CategoryTest()
+        //{
+        //    CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+        //    foreach (var categor in categoryManager.GetAll())
+        //    {
+        //        Console.WriteLine(categor.CategoryName);
 
-            }
-        }
+        //    }
+        //}
 
-        private static void ProductTest()
-        {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+        //private static void ProductTest()
+        //{
+        //    ProductManager productManager = new ProductManager(new EfProductDal());
 
-            var result = productManager.GetProductDetails();
-            if (result.Success==true)
-            {
-                foreach (var product in result.Data)
-                {
-                    Console.WriteLine(product.ProductName + "/" + product.CategoryName);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
+        //    var result = productManager.GetProductDetails();
+        //    if (result.Success==true)
+        //    {
+        //        foreach (var product in result.Data)
+        //        {
+        //            Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine(result.Message);
+        //    }
             
-        }
+        //}
     }
 }
