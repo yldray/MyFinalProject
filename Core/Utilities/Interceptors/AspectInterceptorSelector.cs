@@ -14,7 +14,7 @@ namespace Core.Utilities.Interceptors
             var methodAttributes = type.GetMethod(method.Name)
                 .GetCustomAttributes<MethodInterceptionBaseAttribute>(true);
             classAttributes.AddRange(methodAttributes);
-            //classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger))); // default loglama metotdu
+           // classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger))); // default loglama metotdu
 
             return classAttributes.OrderBy(x => x.Priority).ToArray();
         }
