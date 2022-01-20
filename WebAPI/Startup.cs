@@ -1,5 +1,7 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
@@ -39,7 +41,6 @@ namespace WebAPI
             //Autofac,Ninject,Castlewindsor,StructureMap,LightInject,DryInject -->IoC Container
             //AOP
             services.AddControllers();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -58,7 +59,11 @@ namespace WebAPI
                     };
                     
                 });
-            ServiceTool.Create(services);
+                     
+            services.AddDependencyResolvers(new ICoreModule[]
+            {
+                new CoreModule()
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -68,6 +73,7 @@ namespace WebAPI
             //Birisi Constructor da IProduct servisi isterse git productmanager kullan
             //services.AddSingleton<IProductService,ProductManager>();
             //services.AddSingleton<IProductDal,EfProductDal>();
+            // bunlarý gittik business da dependency resolvers a yazdýk.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

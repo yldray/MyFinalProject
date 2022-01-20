@@ -60,10 +60,9 @@ namespace Business.Concrete
 
             // business codes 
             // polimorfizm
-
-            IResult result=BusinessRules.Run(CheckIfProductNameExist(product.ProductName),
-                                             CheckIfProductCountOfCategoryCorrect(product.CategoryId),
-                                              CheckIfCategoryLimitExceded());
+            IResult result = BusinessRules.Run(CheckIfProductNameExist(product.ProductName),
+                                           CheckIfProductCountOfCategoryCorrect(product.CategoryId),
+                                           CheckIfCategoryLimitExceded());
             //if (CheckIfProductCountOfCategoryCorrect(product.CategoryId).Success)
             //{
             //    if (CheckIfProductNameExist(product.ProductName).Success)
@@ -73,11 +72,12 @@ namespace Business.Concrete
             //    }
             //}
             // return new ErrorResult();
-            
+
             if (result != null)
             {
                 return result;
             }
+
 
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
@@ -132,7 +132,7 @@ namespace Business.Concrete
         private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
         {
             var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count();
-            if (result >= 10)
+            if (result >= 30)
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
             }
