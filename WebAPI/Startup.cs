@@ -41,6 +41,7 @@ namespace WebAPI
             //Autofac,Ninject,Castlewindsor,StructureMap,LightInject,DryInject -->IoC Container
             //AOP
             services.AddControllers();
+            services.AddCors();
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -85,13 +86,11 @@ namespace WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
-
+            // þu adresten ne gelirse gelsin bu adama veriyi ver ben bu adama güveniyorum.
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
             app.UseHttpsRedirection();
-
             app.UseAuthentication();
             app.UseRouting();
-           
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
